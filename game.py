@@ -1,51 +1,54 @@
-import tkinter as tk
 import random
 
-#funkcja zmieniajace obraz wylosowanego przedmiotu
-def changeImg(self, char):
-    if char == 1:
-        self.computerMove.configure(image = self.rockImage)
-    elif char == 2:
-        self.computerMove.configure(image = self.paperImage)
-    else:
-        self.computerMove.configure(image = self.scissorsImage)
 
-#funkcja sprawdzajaca czy ktos wygral
-def hasSomeoneWon(obj, self):
-    user = int(self.userPoints.get())
-    computer = int(self.computerPoints.get())
+class mechanics():
 
-    if user == 3:
-        self.userPoints.set(0)
-        self.computerPoints.set(0)
+    #funkcja zmieniajace obraz wylosowanego przedmiotu
+    def changeImg(self, char):
+        if char == 1:
+            self.computerMove.configure(image = self.rockImage)
+        elif char == 2:
+            self.computerMove.configure(image = self.paperImage)
+        else:
+            self.computerMove.configure(image = self.scissorsImage)
 
-        self.infoText.set("User won the game")
+    #funkcja sprawdzajaca czy ktos wygral
+    def hasSomeoneWon(obj, self):
+        user = int(self.userPoints.get())
+        computer = int(self.computerPoints.get())
 
-    if computer == 3:
-        self.userPoints.set(0)
-        self.computerPoints.set(0)
+        if user == 3:
+            self.userPoints.set(0)
+            self.computerPoints.set(0)
 
-        self.infoText.set("Computer won the game")
+            self.infoText.set("User won the game")
 
-#fukcja sprawdzajaca kto zdobyl punkt
-def checkResult(self):
-    waepon = int(self.waepon.get())
-    computerMove = random.randint(1, 3)
-    points = 0
+        if computer == 3:
+            self.userPoints.set(0)
+            self.computerPoints.set(0)
 
-    changeImg(self, computerMove)
+            self.infoText.set("Computer won the game")
 
-    if waepon == computerMove:
-        self.infoText.set("Draw!")
+    #fukcja sprawdzajaca kto zdobyl punkt
+    @staticmethod
+    def checkResult(self):
+        waepon = int(self.waepon.get())
+        computerMove = random.randint(1, 3)
+        points = 0
 
-    if waepon == (computerMove + 1) or waepon == (computerMove - 2):
-        points = int(self.userPoints.get()) + 1
-        self.userPoints.set(points)
-        self.infoText.set("User got 1 point!")
+        mechanics.changeImg(self, computerMove)
 
-    if computerMove == (waepon + 1) or computerMove == (waepon - 2):
-        points = int(self.computerPoints.get()) + 1
-        self.computerPoints.set(points)
-        self.infoText.set("PC got 1 point!")
+        if waepon == computerMove:
+            self.infoText.set("Draw!")
 
-    hasSomeoneWon(self, self)
+        if waepon == (computerMove + 1) or waepon == (computerMove - 2):
+            points = int(self.userPoints.get()) + 1
+            self.userPoints.set(points)
+            self.infoText.set("User got 1 point!")
+
+        if computerMove == (waepon + 1) or computerMove == (waepon - 2):
+            points = int(self.computerPoints.get()) + 1
+            self.computerPoints.set(points)
+            self.infoText.set("PC got 1 point!")
+
+        mechanics.hasSomeoneWon(self, self)

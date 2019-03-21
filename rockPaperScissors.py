@@ -1,5 +1,5 @@
 import tkinter as tk
-import game
+from game import mechanics
 
 class Application(tk.Frame):
     def __init__(self, master=None):
@@ -25,7 +25,7 @@ class Application(tk.Frame):
         self.paper = tk.Radiobutton(self, image = self.paperImage, variable = self.waepon, value = 2).grid(row = 0, column = 1)
         self.scissors = tk.Radiobutton(self, image = self.scissorsImage, variable = self.waepon, value = 3).grid(row = 0, column = 2)
 
-        self.warButton = tk.Button(self, text = "Battle!", command = lambda: game.checkResult(self)).grid(row = 1, column = 1)
+        self.warButton = tk.Button(self, text = "Battle!", command = lambda: mechanics.checkResult(self)).grid(row = 1, column = 1)
 
         self.ctext = tk.Label(self, text = "Computer's Move").grid(row = 2, column = 1)
 
