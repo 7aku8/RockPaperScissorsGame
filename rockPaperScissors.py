@@ -16,34 +16,34 @@ class Application(tk.Frame):
         self.waepon = tk.StringVar()
 
         #pobranie obrazow
-        self.rockImage = tk.PhotoImage(file = ".\\rock.png")
-        self.paperImage = tk.PhotoImage(file = ".\\paper.png")
-        self.scissorsImage = tk.PhotoImage(file = ".\\scissors.png")
+        self.rock_image = tk.PhotoImage(file = ".\\rock.png")
+        self.paper_image = tk.PhotoImage(file = ".\\paper.png")
+        self.scissors_image = tk.PhotoImage(file = ".\\scissors.png")
 
         #przyciski do wyboru opcji
-        self.rock = tk.Radiobutton(self, image = self.rockImage, variable = self.waepon, value = 1).grid(row = 0, column = 0)
-        self.paper = tk.Radiobutton(self, image = self.paperImage, variable = self.waepon, value = 2).grid(row = 0, column = 1)
-        self.scissors = tk.Radiobutton(self, image = self.scissorsImage, variable = self.waepon, value = 3).grid(row = 0, column = 2)
+        self.rock = tk.Radiobutton(self, image = self.rock_image, variable = self.waepon, value = 1).grid(row = 0, column = 0)
+        self.paper = tk.Radiobutton(self, image = self.paper_image, variable = self.waepon, value = 2).grid(row = 0, column = 1)
+        self.scissors = tk.Radiobutton(self, image = self.scissors_image, variable = self.waepon, value = 3).grid(row = 0, column = 2)
 
-        self.warButton = tk.Button(self, text = "Battle!", command = lambda: mechanics.checkResult(self)).grid(row = 1, column = 1)
+        self.war_button = tk.Button(self, text = "Battle!", command = lambda: mechanics.checkResult(self)).grid(row = 1, column = 1)
 
         self.ctext = tk.Label(self, text = "Computer's Move").grid(row = 2, column = 1)
 
         #pole wyswietlajace wylosowany przedmiot przez komputer
-        self.computerMove = tk.Label(self)
-        self.computerMove.grid(row = 3, column = 1)
+        self.computer_move = tk.Label(self)
+        self.computer_move.grid(row = 3, column = 1)
 
         #pole wyswietlajace wynik
-        self.infoText = tk.StringVar()
-        self.infoText.set("Waiting for move...")
-        self.info = tk.Label(self, textvariable = self.infoText).grid(row = 1, column = 3)
+        self.info_text = tk.StringVar()
+        self.info_text.set("Waiting for move...")
+        self.info = tk.Label(self, textvariable = self.info_text).grid(row = 1, column = 3)
         self.rtext = tk.Label(self, text = "Result:").grid(row = 2, column = 3)
-        self.userPoints = tk.StringVar()
-        self.userPoints.set(0)
-        self.computerPoints = tk.StringVar()
-        self.computerPoints.set(0)
-        self.userResult = tk.Label(self, textvariable = self.userPoints).grid(row = 3, column = 3)
-        self.computerResult = tk.Label(self, textvariable = self.computerPoints).grid(row = 3, column = 4)
+        self.user_points = tk.StringVar()
+        self.user_points.set(0)
+        self.computer_points = tk.StringVar()
+        self.computer_points.set(0)
+        self.user_result = tk.Label(self, textvariable = self.user_points).grid(row = 3, column = 3)
+        self.computerResult = tk.Label(self, textvariable = self.computer_points).grid(row = 3, column = 4)
 
 root = tk.Tk()
 app = Application(master=root)
