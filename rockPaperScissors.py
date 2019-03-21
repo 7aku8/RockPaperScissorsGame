@@ -9,14 +9,18 @@ class Application(tk.Frame):
         self.create_widgets()
 
     def create_widgets(self):
+        #nazwa aplikacji
         self.winfo_toplevel().title("RockPaperScissors")
 
+        #zmienna przechowujaca wybrana opcje [kamien, papier, nozyce]
         self.waepon = tk.StringVar()
 
+        #pobranie obrazow
         self.rockImage = tk.PhotoImage(file = ".\\rock.png")
         self.paperImage = tk.PhotoImage(file = ".\\paper.png")
         self.scissorsImage = tk.PhotoImage(file = ".\\scissors.png")
 
+        #przyciski do wyboru opcji
         self.rock = tk.Radiobutton(self, image = self.rockImage, variable = self.waepon, value = 1).grid(row = 0, column = 0)
         self.paper = tk.Radiobutton(self, image = self.paperImage, variable = self.waepon, value = 2).grid(row = 0, column = 1)
         self.scissors = tk.Radiobutton(self, image = self.scissorsImage, variable = self.waepon, value = 3).grid(row = 0, column = 2)
@@ -25,23 +29,23 @@ class Application(tk.Frame):
 
         self.ctext = tk.Label(self, text = "Computer's Move").grid(row = 2, column = 1)
 
+        #pole wyswietlajace wylosowany przedmiot przez komputer
         self.computerMove = tk.Label(self)
         self.computerMove.grid(row = 3, column = 1)
 
+        #pole wyswietlajace wynik
         self.infoText = tk.StringVar()
         self.infoText.set("Waiting for move...")
         self.info = tk.Label(self, textvariable = self.infoText).grid(row = 1, column = 3)
-
         self.rtext = tk.Label(self, text = "Result:").grid(row = 2, column = 3)
-
         self.userPoints = tk.StringVar()
         self.userPoints.set(0)
         self.computerPoints = tk.StringVar()
         self.computerPoints.set(0)
-
         self.userResult = tk.Label(self, textvariable = self.userPoints).grid(row = 3, column = 3)
         self.computerResult = tk.Label(self, textvariable = self.computerPoints).grid(row = 3, column = 4)
 
+    #funkcja zmieniajace obraz wylosowanego przedmiotu
     def changeImg(self, char):
         if char == 1:
             self.computerMove.configure(image = self.rockImage)
@@ -50,6 +54,7 @@ class Application(tk.Frame):
         else:
             self.computerMove.configure(image = self.scissorsImage)
 
+    #funkcja sprawdzajaca czy ktos wygral
     def hasSomeoneWon(obj, self):
         user = int(self.userPoints.get())
         computer = int(self.computerPoints.get())
@@ -66,7 +71,7 @@ class Application(tk.Frame):
 
             self.infoText.set("Computer won the game")
 
-
+    #fukcja sprawdzajaca kto zdobyl punkt
     def checkResult(self):
         waepon = int(self.waepon.get())
         computerMove = random.randint(1, 3)
